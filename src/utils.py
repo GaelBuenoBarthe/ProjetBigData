@@ -4,6 +4,7 @@ import unidecode
 def read_and_clean_csv(file_path):
     # Lire le fichier CSV
     df = pd.read_csv(file_path)
+    #print(f"Nombre de lignes initiales: {len(df)}")
 
     # Enlever les accents uniquement pour les colonnes de type objet (chaînes de caractères)
     for col in df.select_dtypes(include=['object']).columns:
@@ -11,6 +12,8 @@ def read_and_clean_csv(file_path):
 
     # Convertir les dates et enlever les lignes avec des dates invalides
     df['datcde'] = pd.to_datetime(df['datcde'], errors='coerce')
+    df = df.dropna(subset=['datcde'])  # Supprimer les lignes avec des dates invalides
+    #print(f"Nombre de lignes après conversion de la date: {len(df)}")
 
     # Remplacer les valeurs non-finies par des valeurs par défaut appropriées
     df['codcli'] = df['codcli'].fillna(0).astype('int32')
@@ -37,5 +40,11 @@ def read_and_clean_csv(file_path):
     df['libcondit'] = df['libcondit'].fillna('').astype('string')
     df['prixcond'] = df['prixcond'].fillna(0.0).astype(float)
     df['puobj'] = df['puobj'].fillna(0.0).astype(float)
+    #print(f"Nombre de lignes après remplissage des valeurs manquantes: {len(df)}")
+
+    # Supprimer les doublons
+    df = df.drop_duplicates()
+    #print(f"Nombre de lignes après suppression des doublons: {len(df)}")
 
     return df
+    print(f"Nouveaux fichier crée avec succés")
