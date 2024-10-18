@@ -16,3 +16,20 @@ Ce projet consiste à analyser et nettoyer les données d'une fromagerie, puis �
     pip install -r requirements.txt
     ```
 
+## Utilisation
+- Pour exécuter le LOT 0 :
+    ```sh
+    python src/clean.py
+    ```
+- Pour exécuter le LOT 1 :
+    ```sh
+    python src/lot1.py
+    ```
+- Pour exécuter le LOT 2 :
+    ```sh
+    python src/lot2.py
+    ```
+- Pour exécuter le LOT 3 :
+    ```sh
+    python src/lot3.py
+    ```
