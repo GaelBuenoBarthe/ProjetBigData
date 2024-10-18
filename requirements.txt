@@ -1,0 +1,5 @@
+pandas
+Unidecode
+openpyxl
+matplotlib
+happybase
